@@ -33,3 +33,13 @@ git reset --soft HEAD~
 ```
 
 Um número específico de commits também é possível igual ao hard reset, basta substituir o `~` pelo número de commits desejados
+
+## Git rebase
+Reescreve o histórico de commits em um branch.
+
+Em resumo, o `git rebase` funciona da seguinte maneira:
+
+- Ele busca os commits em comum entre o branch atual e o branch especificado (geralmente a branch master).
+- Ele "move" o branch atual para o ponto de divergência entre o branch atual e o branch especificado.
+- Ele aplica os commits que não estão no branch atual na ordem em que foram criados, como se tivessem sido feitos em cima do ponto de divergência.
+- Ele atualiza a branch atual com as mudanças do rebase.
