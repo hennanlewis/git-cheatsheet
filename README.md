@@ -46,7 +46,7 @@ Em resumo, o `git rebase` funciona da seguinte maneira:
 - Ele aplica os commits que não estão no branch atual na ordem em que foram criados, como se tivessem sido feitos em cima do ponto de divergência.
 - Ele atualiza a branch atual com as mudanças do rebase.
 
-Como chamada de atenção, antes de escrever o texto a partir deste momento, fiz um commit vazio com a mensagem `Commit inicialmente vazio para ser editado depois` e outro com mensagem `Commit sobre rebase inicial` que possui todo o conteúdo até o texto anterior a este parágrafo. Caso ocorra tudo bem com o teste com o comando `git rebase`, todas as alterações vão para o commit vazio e o `Commit sobre rebase inicial` ficará vazio.
+Como chamada de atenção, antes de escrever o texto a partir deste momento, fiz um commit vazio com a mensagem `Commit inicialmente vazio para ser editado depois` e outro com mensagem `Commit inicial sobre rebase` que possui todo o conteúdo até o texto anterior a este parágrafo. Caso ocorra tudo bem com o teste com o comando `git rebase`, todas as alterações vão para o commit vazio e o `Commit inicial sobre rebase` ficará vazio.
 
 A partir deste momento, devemos seguir os seguinte passos:
 1. Insira o comando `git rebase -i HEAD~N`, onde `N` é o número de commits que você deseja editar, ou seja, neste caso é 2;
@@ -58,4 +58,12 @@ A partir deste momento, devemos seguir os seguinte passos:
 7. Após chegar no último commit a ser editado, insira mais uma vez o comando `git rebase --continue` para indicar que o repositório está pronto para fazer o push dos commits;
 8. Caso tenha necessidade de corrigir alguma inconsistência por conta das mudanças, faça o merge adequadamente. Caso apenas queira forçar o push do jeito que está use `git push --force`.
 
-Apos acabar de fazer esses passos, os commits modificados desse repositório ficarão com o mesmo nome de antes da modificação para que utilizar este tutorial como exemplo, então o commit com mensagem `Commit inicialmente vazio para ser editado depois` tera todas as modificações do `Commit sobre rebase inicial` e o `Commit sobre rebase inicial` ficará vazio.
+### **Observações**:
+
+1. Lembre-se que caso exista algum tipo de conflito ao fazer merge, só será possível fazer o commit após corrigi-los.
+
+2. A data dos commits alterados mudarão para a data da alteração, ou seja, se você alterar 100 commits distribuidos entre os dias 01/01/2023 a 01/02/2023 no dia 01/03/2023, todos 100 commits sumirão dos dias originais e aparecerão 100 commits no dia 01/03/2023.
+
+3. Caso a modificação gere inconsistência para arquivos posteriores, você deverá consertar todas elas antes, então tenha cuidado (principalmente se você não quer mudar a data de muitos commits). O tipo de modificação que gera conflitos mais complexos é modificar o número de linhas em um arquivo porque digamos que atualmente você tem um arquivo com 10 linhas, mas quer alterar um commit que na época tinha apenas 3, após adicionar mais duas linhas às 3 já existentes, as linhas 4 e 5 de todos os commits posteriores entrarão em conflito devido a já possuírem conteúdo que obviamente é diferente.
+
+Apos acabar de fazer esses passos, os commits modificados desse repositório ficarão com o mesmo nome de antes da modificação para que utilizar este tutorial como exemplo, então o commit com mensagem `Commit inicialmente vazio para ser editado depois` tera todas as modificações do `Commitinicial sobre rebase` e o `Commit inicial sobre rebase` ficará vazio.
